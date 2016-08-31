@@ -11,7 +11,7 @@ if (!FB_PAGE_TOKEN) {
 	throw new Error('Missing FB_PAGE_TOKEN. Go to https://developers.facebook.com/docs/pages/access-tokens to get one.')
 }
 
-var FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN || 'just_do_it'
+var FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN || 'my_voice_is_my_password_verify_me'
 
 module.exports = {
   WIT_TOKEN: WIT_TOKEN,
