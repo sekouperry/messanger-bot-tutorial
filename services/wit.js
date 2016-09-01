@@ -120,17 +120,20 @@ var actions = {
  	getWeather(location)
 	.then(function (forecast) {
 		context.forecast = forecast || 'sunny'
+		return resolve(context);
 	})
 	.catch(function (err) {
 		console.log(err)
+		return resolve(context);
 	})
         //context.forecast = 'sunny in ' + location; // we should call a weather API here
         delete context.missingLocation;
       } else {
         context.missingLocation = true;
         delete context.forecast;
+        return resolve(context);
       }
-      return resolve(context);
+      
     });
   },
 };
