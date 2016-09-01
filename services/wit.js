@@ -114,22 +114,28 @@ var actions = {
     });
   },
   getForecast({context, entities}) {
+  	console.log("11111")
     return new Promise(function(resolve, reject) {
       var location = firstEntityValue(entities, 'location')
+      console.log("22222")
       if (location) {
+      	console.log("33333")
  	getWeather(location)
 	.then(function (forecast) {
+		console.log("77777")
 		console.log("########### context.forecast: " + context.forecast)
 		context.forecast = forecast || 'sunny'
 		return resolve(context);
 	})
 	.catch(function (err) {
+		console.log("88888")
 		console.log(err)
 		return resolve(context);
 	})
         //context.forecast = 'sunny in ' + location; // we should call a weather API here
         delete context.missingLocation;
       } else {
+      	console.log("99999")
         context.missingLocation = true;
         delete context.forecast;
         return resolve(context);
@@ -159,9 +165,12 @@ if (require.main === module) {
 
 // GET WEATHER FROM API
 var getWeather = function (location) {
+	console.log("44444")
 	return new Promise(function (resolve, reject) {
+		console.log("55555")
 		var url = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22'+ location +'%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys'
 		request(url, function (error, response, body) {
+			console.log("66666")
 		    if (!error && response.statusCode == 200) {
 		    	var jsonData = JSON.parse(body)
 		    	console.log(jsonData)
