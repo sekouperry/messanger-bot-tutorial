@@ -36,7 +36,7 @@ app.get('/webhooks', function (req, res) {
 
 // to send messages to facebook
 app.post('/webhooks', function (req, res) {
-  // console.log("##########SEND MESSAGE TO FACEBOOK##########")
+  console.log("##########SEND MESSAGE TO FACEBOOK##########")
   // var entry = FB.getMessageEntry(req.body)
   // // IS THE ENTRY A VALID MESSAGE?
   // if (entry && entry.message) {
@@ -53,7 +53,7 @@ app.post('/webhooks', function (req, res) {
 
   // res.sendStatus(200)
   
-  messaging_events = req.body.entry[0].messaging:
+  messaging_events = req.body.entry[0].messaging;
   for (i=0; i<messaging_events.length; i++)
   {
     event = req.body.entry[0].messaging[i];
