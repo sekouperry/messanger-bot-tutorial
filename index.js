@@ -27,6 +27,7 @@ app.get('/', function (req, res) {
 
 // for facebook to verify
 app.get('/webhooks', function (req, res) {
+  console.log("##########VERIFY TOKEN##########")
   if (req.query['hub.verify_token'] === Config.FB_VERIFY_TOKEN) {
     res.send(req.query['hub.challenge'])
   }
@@ -35,8 +36,8 @@ app.get('/webhooks', function (req, res) {
 
 // to send messages to facebook
 app.post('/webhooks', function (req, res) {
+  console.log("##########SEND MESSAGE TO FACEBOOK##########")
   var entry = FB.getMessageEntry(req.body)
-  console.log("entry: " + JSON.stringify(entry) );
   // IS THE ENTRY A VALID MESSAGE?
   if (entry && entry.message) {
     if (entry.message.attachments) {
