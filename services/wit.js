@@ -81,22 +81,18 @@ var actions = {
 	['fetch-weather'](sessionId, context, cb) {
 		console.log("##########fetch-weather##########")
 		// Here we can place an API call to a weather service
-		if (context.loc) {
-			getWeather(context.loc)
-				.then(function (forecast) {
-					context.forecast = forecast || 'sunny'
-					console.log("context.forecast: " + context.forecast);
-					cb(context)
-				})
-				.catch(function (err) {
-					console.log(err)
-					cb(context)
-				})
-		}
+		// if (context.loc) {
+		// 	getWeather(context.loc)
+		// 		.then(function (forecast) {
+		// 			context.forecast = forecast || 'sunny'
+		// 		})
+		// 		.catch(function (err) {
+		// 			console.log(err)
+		// 		})
+		// }
 		
-		// // context.forecast = 'Sunny'
-		// console.log("context.forecast: " + context.forecast);
-		// cb(context)
+		context.forecast = 'Sunny'
+		cb(context)
 	},
 
 	['fetch-pics'](sessionId, context, cb) {
