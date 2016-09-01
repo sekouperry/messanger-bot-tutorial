@@ -52,7 +52,7 @@ app.post('/webhooks', function (req, res) {
   // }
 
   // res.sendStatus(200)
-  
+  console.log(JSON.stringify(req.body));
   var messaging_events = req.body.entry[0].messaging;
   for (var i = 0; i < messaging_events.length; i++)
   {
