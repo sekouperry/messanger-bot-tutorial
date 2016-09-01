@@ -117,7 +117,14 @@ var actions = {
     return new Promise(function(resolve, reject) {
       var location = firstEntityValue(entities, 'location')
       if (location) {
-        context.forecast = 'sunny in ' + location; // we should call a weather API here
+ 	getWeather(location)
+	.then(function (forecast) {
+		context.forecast = forecast || 'sunny'
+	})
+	.catch(function (err) {
+		console.log(err)
+	})
+        //context.forecast = 'sunny in ' + location; // we should call a weather API here
         delete context.missingLocation;
       } else {
         context.missingLocation = true;
