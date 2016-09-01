@@ -37,33 +37,34 @@ app.get('/webhooks', function (req, res) {
 // to send messages to facebook
 app.post('/webhooks', function (req, res) {
   console.log("##########SEND MESSAGE TO FACEBOOK##########")
-  // var entry = FB.getMessageEntry(req.body)
-  // // IS THE ENTRY A VALID MESSAGE?
-  // if (entry && entry.message) {
-  //   if (entry.message.attachments) {
-  //     // NOT SMART ENOUGH FOR ATTACHMENTS YET
-  //     FB.newMessage(entry.sender.id, "That's interesting!")
-  //   } else {
-  //     // SEND TO BOT FOR PROCESSING
-  //     Bot.read(entry.sender.id, entry.message.text, function (sender, reply) {
-  //       FB.newMessage(sender, reply)
-  //     })
-  //   }
-  // }
-
-  // res.sendStatus(200)
-  console.log(JSON.stringify(req.body));
-  var messaging_events = req.body.entry[0].messaging;
-  for (var i = 0; i < messaging_events.length; i++)
-  {
-    var event = req.body.entry[0].messaging[i];
-    var sender = event.sender.id;
-    if( event.message && event.message.text )
-    {
-      var text = event.message.text;
-      console.log(text);
+  var entry = FB.getMessageEntry(req.body)
+  // IS THE ENTRY A VALID MESSAGE?
+  if (entry && entry.message) {
+    if (entry.message.attachments) {
+      // NOT SMART ENOUGH FOR ATTACHMENTS YET
+      FB.newMessage(entry.sender.id, "That's interesting!")
+    } else {
+      console.log(entry.message.text);
+      // // SEND TO BOT FOR PROCESSING
+      // Bot.read(entry.sender.id, entry.message.text, function (sender, reply) {
+      //   FB.newMessage(sender, reply)
+      // })
     }
   }
-  
+
   res.sendStatus(200)
+  // console.log(JSON.stringify(req.body));
+  // var messaging_events = req.body.entry[0].messaging;
+  // for (var i = 0; i < messaging_events.length; i++)
+  // {
+  //   var event = req.body.entry[0].messaging[i];
+  //   var sender = event.sender.id;
+  //   if( event.message && event.message.text )
+  //   {
+  //     var text = event.message.text;
+  //     console.log(text);
+  //   }
+  // }
+  
+  // res.sendStatus(200)
 })
