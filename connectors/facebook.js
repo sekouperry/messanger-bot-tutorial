@@ -87,6 +87,19 @@ var newMessage = function (recipientId, msg, atts, cb) {
 // PARSE A FACEBOOK MESSAGE to get user, message body, or attachment
 // https://developers.facebook.com/docs/messenger-platform/webhook-reference
 var getMessageEntry = function (body) {
+	console.log("##########getMessageEntry##########");
+	console.log("body: " + JSON.stringify(body));
+
+	console.log("body.object: " + body.object);
+	console.log("body.entry: " + body.entry);
+	console.log("Array.isArray(body.entry): " + Array.isArray(body.entry));
+	console.log("body.entry.length: " + body.entry.length);
+	console.log("body.entry[0]: " + body.entry[0]);
+	console.log("body.entry[0].messaging: " + body.entry[0].messaging);
+	console.log("Array.isArray(body.entry[0].messaging): " + Array.isArray(body.entry[0].messaging));
+	console.log("body.entry[0].messaging.length: " + body.entry[0].messaging.length);
+	console.log("body.entry[0].messaging[0]: " + body.entry[0].messaging[0]);
+
 	var val = body.object === 'page' &&
 						body.entry &&
 						Array.isArray(body.entry) &&
@@ -96,6 +109,7 @@ var getMessageEntry = function (body) {
 						Array.isArray(body.entry[0].messaging) &&
 						body.entry[0].messaging.length > 0 &&
 						body.entry[0].messaging[0]
+	console.log("######################################");
 	return val || null
 }
 
