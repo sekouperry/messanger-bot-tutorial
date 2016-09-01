@@ -112,7 +112,7 @@ const actions = {
       return resolve();
     });
   },
-  ['fetch-weather']({context, entities}) {
+  getForecast({context, entities}) {
     return new Promise(function(resolve, reject) {
       // Here should go the api call, e.g.:
       // context.forecast = apiCall(context.loc)
