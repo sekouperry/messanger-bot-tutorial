@@ -167,7 +167,7 @@ var getWeather = function (location) {
 		    	console.log(jsonData)
 		    	var forecast = jsonData.query.results.channel.item.forecast[0].text
 		      console.log('WEATHER API SAYS....', jsonData.query.results.channel.item.forecast[0].text)
-		      return forecast
+		      return resolve(forecast)
 		    }
 			})
 	})
