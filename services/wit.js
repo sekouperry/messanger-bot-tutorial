@@ -104,25 +104,49 @@ var firstEntityValue = function (entities, entity) {
 // }
 
 const actions = {
+say (sessionId, context, message, cb) {
+	// Bot testing mode, run cb() and return
+	if (require.main === module) {
+		cb()
+		return
+	}
+
+	console.log('WIT WANTS TO TALK TO:', context._fbid_)
+	console.log('WIT HAS SOMETHING TO SAY:', message)
+	console.log('WIT HAS A CONTEXT:', context)
+
+	if (checkURL(message)) {
+		FB.newMessage(context._fbid_, message, true)
+	} else {
+		FB.newMessage(context._fbid_, message)
+	}
+
+
+	cb()
+
+},
   send(request, response) {
-  	console.log("!!!!!!!!!!!!!!!!!!!!!!!send")
-    //const {sessionId, context, entities} = request;
-    //const {text, quickreplies} = response;
+    const {sessionId, context, entities} = request;
+    const {text, quickreplies} = response;
     return new Promise(function(resolve, reject) {
       console.log('sending...', JSON.stringify(response));
       return resolve();
     });
   },
   getForecast({context, entities}) {
-  	console.log("!!!!!!!!!!!!!!!!!!!!!!!getForecast")
     return new Promise(function(resolve, reject) {
-      // Here should go the api call, e.g.:
-      // context.forecast = apiCall(context.loc)
-      context.forecast = 'sunny';
+      var location = firstEntityValue(entities, 'location')
+      if (location) {
+        context.forecast = 'sunny in ' + location; // we should call a weather API here
+        delete context.missingLocation;
+      } else {
+        context.missingLocation = true;
+        delete context.forecast;
+      }
       return resolve(context);
     });
-  }
-}
+  },
+};
 
 
 // SETUP THE WIT.AI SERVICE
