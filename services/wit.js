@@ -109,6 +109,7 @@ var actions = {
     const {text, quickreplies} = response;
     return new Promise(function(resolve, reject) {
       console.log('sending...', JSON.stringify(response));
+      FB.newMessage(context._fbid_, response.text);
       return resolve();
     });
   },
