@@ -119,6 +119,7 @@ var actions = {
       if (location) {
  	getWeather(location)
 	.then(function (forecast) {
+		console.log("########### context.forecast: " + context.forecast)
 		context.forecast = forecast || 'sunny'
 		return resolve(context);
 	})
