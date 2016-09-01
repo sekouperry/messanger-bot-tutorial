@@ -173,8 +173,8 @@ var getWeather = function (location) {
 			console.log("66666")
 		    if (!error && response.statusCode == 200) {
 		    	var jsonData = JSON.parse(body)
-		    	console.log(jsonData)
-		    	var forecast = jsonData.query.results.channel.item.forecast[0].text
+		    	console.log(JSON.stringify(jsonData))
+		    	var forecast = 'zajebista!'//jsonData.query.results.channel.item.forecast[0].text
 		      console.log('WEATHER API SAYS....', jsonData.query.results.channel.item.forecast[0].text)
 		      return resolve(forecast)
 		    }
