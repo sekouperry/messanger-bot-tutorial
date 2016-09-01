@@ -52,6 +52,7 @@ app.post('/webhooks', function (req, res) {
   // }
 
   // res.sendStatus(200)
+  
   messaging_events = req.body.entry[0].messaging:
   for (i=0; i<messaging_events.length; i++)
   {
@@ -62,8 +63,6 @@ app.post('/webhooks', function (req, res) {
       text = event.message.text;
       console.log(text);
     }
-    }
-  }
   }
   
   res.sendStatus(200)
