@@ -130,8 +130,8 @@ const actions = {
 
 // SETUP THE WIT.AI SERVICE
 var getWit = function () {
-	console.log('GRABBING WIT')
-	return new Wit(Config.WIT_TOKEN, actions)
+	console.log('GRABBING WIT');
+	return new Wit({Config.WIT_TOKEN, actions});
 }
 
 module.exports = {
