@@ -104,27 +104,6 @@ var firstEntityValue = function (entities, entity) {
 // }
 
 const actions = {
-say (sessionId, context, message, cb) {
-	// Bot testing mode, run cb() and return
-	if (require.main === module) {
-		cb()
-		return
-	}
-
-	console.log('WIT WANTS TO TALK TO:', context._fbid_)
-	console.log('WIT HAS SOMETHING TO SAY:', message)
-	console.log('WIT HAS A CONTEXT:', context)
-
-	if (checkURL(message)) {
-		FB.newMessage(context._fbid_, message, true)
-	} else {
-		FB.newMessage(context._fbid_, message)
-	}
-
-
-	cb()
-
-},
   send(request, response) {
     const {sessionId, context, entities} = request;
     const {text, quickreplies} = response;
