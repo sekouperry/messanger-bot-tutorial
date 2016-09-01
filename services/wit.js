@@ -103,7 +103,7 @@ var firstEntityValue = function (entities, entity) {
 // 	},
 // }
 
-const actions = {
+var actions = {
   send(request, response) {
     const {sessionId, context, entities} = request;
     const {text, quickreplies} = response;
@@ -131,7 +131,7 @@ const actions = {
 // SETUP THE WIT.AI SERVICE
 var getWit = function () {
 	console.log('GRABBING WIT');
-	return new Wit({'SAF7O636VJKSYSFGHBLRGH7W2FZDEZLH', actions});
+	return new Wit({accessToken: 'SAF7O636VJKSYSFGHBLRGH7W2FZDEZLH', actions: actions});
 }
 
 module.exports = {
