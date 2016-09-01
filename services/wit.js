@@ -105,6 +105,7 @@ var firstEntityValue = function (entities, entity) {
 
 const actions = {
   send(request, response) {
+  	console.log("!!!!!!!!!!!!!!!!!!!!!!!send")
     const {sessionId, context, entities} = request;
     const {text, quickreplies} = response;
     return new Promise(function(resolve, reject) {
@@ -113,14 +114,15 @@ const actions = {
     });
   },
   getForecast({context, entities}) {
+  	console.log("!!!!!!!!!!!!!!!!!!!!!!!getForecast")
     return new Promise(function(resolve, reject) {
       // Here should go the api call, e.g.:
       // context.forecast = apiCall(context.loc)
       context.forecast = 'sunny';
       return resolve(context);
     });
-  },
-};
+  }
+}
 
 
 // SETUP THE WIT.AI SERVICE
