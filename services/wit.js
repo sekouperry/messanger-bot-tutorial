@@ -106,8 +106,8 @@ var firstEntityValue = function (entities, entity) {
 const actions = {
   send(request, response) {
   	console.log("!!!!!!!!!!!!!!!!!!!!!!!send")
-    const {sessionId, context, entities} = request;
-    const {text, quickreplies} = response;
+    //const {sessionId, context, entities} = request;
+    //const {text, quickreplies} = response;
     return new Promise(function(resolve, reject) {
       console.log('sending...', JSON.stringify(response));
       return resolve();
