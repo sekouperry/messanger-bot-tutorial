@@ -113,34 +113,21 @@ var actions = {
       return resolve();
     });
   },
-  getForecast({context, entities}) {
-  	console.log("11111")
+  getForecast({entities, context}) {
     return new Promise(function(resolve, reject) {
-      var location = firstEntityValue(entities, 'location')
-      console.log("22222")
-      if (location) {
-      	console.log("33333")
- 	getWeather(location)
-	.then(function (forecast) {
-		console.log("77777")
-		console.log("########### context.forecast: " + context.forecast)
-		context.forecast = forecast || 'sunny'
-		return resolve(context);
-	})
-	.catch(function (err) {
-		console.log("88888")
-		console.log(err)
-		return resolve(context);
-	})
-        //context.forecast = 'sunny in ' + location; // we should call a weather API here
-        delete context.missingLocation;
-      } else {
-      	console.log("99999")
-        context.missingLocation = true;
-        delete context.forecast;
-        return resolve(context);
-      }
-      
+    const location = firstEntityValue(entities, 'location') || 'Paris';
+    console.log( "location: " + location )
+    
+  	getWeather(location).then(function(forecast){
+  		console.log(forecast)
+  		context.forecast = forecast;
+    		return resolve(context);
+  	}).catch(function (err) {
+  		  console.log(err)
+        return reject(err)
+  	})
+
+
     });
   },
 };
@@ -175,8 +162,8 @@ var getWeather = function (location) {
 		    	var jsonData = JSON.parse(body)
 		    	console.log(JSON.stringify(jsonData))
 		    	var forecast = 'zajebista!'//jsonData.query.results.channel.item.forecast[0].text
-		      console.log('WEATHER API SAYS....', jsonData.query.results.channel.item.forecast[0].text)
-		      return resolve(forecast)
+		        console.log('WEATHER API SAYS....', jsonData.query.results.channel.item.forecast[0].text)
+		        return resolve(forecast)
 		    }
 			})
 	})
